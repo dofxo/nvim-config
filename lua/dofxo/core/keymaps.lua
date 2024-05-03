@@ -4,6 +4,7 @@ vim.g.mapleader = " "
 local keymap = vim.keymap
 
 -- General Keymaps -------------------
+keymap.set("n", "<leader><leader>", vim.cmd.w, { desc = "works as :w to save file" })
 
 -- clear search highlights
 keymap.set("n", "<leader>cl", ":nohl<CR>", { desc = "Clear search highlights" })
