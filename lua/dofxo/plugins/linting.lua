@@ -28,4 +28,5 @@ return {
 			lint.try_lint()
 		end, { desc = "Trigger linting for current file" })
 	end,
+	enabled = false,
 }
