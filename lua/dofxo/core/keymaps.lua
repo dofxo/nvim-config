@@ -1,6 +1,9 @@
 -- setting leader key to space
 vim.g.mapleader = " "
 
+-- enable mousemoveevent
+vim.o.mousemoveevent = true
+
 local keymap = vim.keymap
 
 -- General Keymaps -------------------
