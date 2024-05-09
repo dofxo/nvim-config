@@ -3,8 +3,8 @@ return {
 	version = "*",
 	event = "VeryLazy",
 	config = function()
-		require("nvim-surround").setup({
-			-- Configuration here, or leave empty to use defaults
-		})
+		-- to add a surrounding => ys + motion + character
+		-- to remove a surroinding => ds + character
+		require("nvim-surround").setup({})
 	end,
 }
