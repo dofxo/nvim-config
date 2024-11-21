@@ -7,7 +7,9 @@ vim.o.mousemoveevent = true
 local keymap = vim.keymap
 
 -- General Keymaps -------------------
-keymap.set("n", "<leader><leader>", vim.cmd.w, { desc = "works as :w to save file" })
+keymap.set("n", "<leader><leader>", function()
+	vim.cmd("w!")
+end, { desc = "Force save file like :w!" })
 
 -- clear search highlights
 keymap.set("n", "<leader>cl", ":nohl<CR>", { desc = "Clear search highlights" })
