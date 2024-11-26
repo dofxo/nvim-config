@@ -85,6 +85,12 @@ return {
 					capabilities = capabilities,
 				})
 			end,
+			["vscode-ejs"] = function()
+				-- configure vscode-ejs language server
+				lspconfig["vscode-ejs"].setup({
+					capabilities = capabilities,
+				})
+			end,
 			["svelte"] = function()
 				-- configure svelte server
 				lspconfig["svelte"].setup({
