@@ -40,3 +40,6 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 		vim.bo.filetype = "html"
 	end,
 })
+
+-- Hide deprecation warnings
+vim.deprecate = function() end
