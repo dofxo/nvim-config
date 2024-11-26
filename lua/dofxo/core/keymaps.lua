@@ -29,3 +29,5 @@ keymap.set("n", "<leader>p", function()
 	-- Format the current file using Prettier
 	vim.lsp.buf.format({ async = true })
 end, { desc = "Format file with Prettier" })
+
+vim.keymap.set("n", "<leader>ct", ":Themery <CR>")

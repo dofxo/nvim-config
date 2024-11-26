@@ -4,8 +4,6 @@ return {
 	priority = 1000,
 	opts = {},
 	config = function()
-		vim.cmd([[colorscheme eldritch]])
-
 		require("eldritch").setup({
 			transparent = true,
 			terminal_colors = true,
