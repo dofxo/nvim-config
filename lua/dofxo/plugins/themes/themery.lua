@@ -8,7 +8,7 @@ return {
 				"rose-pine-moon",
 				"catppuccin-mocha",
 				"catppuccin-latte",
-				"eldritch",
+				"gruvbox",
 			},
 		})
 	end,

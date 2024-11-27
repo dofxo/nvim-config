@@ -31,3 +31,14 @@ keymap.set("n", "<leader>p", function()
 end, { desc = "Format file with Prettier" })
 
 vim.keymap.set("n", "<leader>ct", ":Themery <CR>")
+
+-- Define a function to toggle between light and dark background
+local is_dark = true
+
+local function toggle_background()
+	vim.o.background = is_dark and "light" or "dark"
+	is_dark = not is_dark
+end
+
+-- Add a keybinding to toggle background (e.g., <leader>cb)
+vim.keymap.set("n", "<leader>cb", toggle_background, { desc = "Toggle Background Color" })
