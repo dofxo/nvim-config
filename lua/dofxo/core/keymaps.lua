@@ -8,11 +8,9 @@ local keymap = vim.keymap
 
 -- General Keymaps -------------------
 keymap.set("n", "<leader><leader>", function()
-	-- Format the current file with Prettier before saving
-	vim.lsp.buf.format({ async = true })
 	-- Save the file
 	vim.cmd("w!")
-end, { desc = "Format file with Prettier and save" })
+end, { desc = "Save Changes" })
 
 -- clear search highlights
 keymap.set("n", "<leader>cl", ":nohl<CR>", { desc = "Clear search highlights" })
