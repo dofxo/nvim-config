@@ -11,7 +11,7 @@ keymap.set("n", "<leader><leader>", function()
 	-- Format the current file with Prettier before saving
 	vim.lsp.buf.format({ async = true })
 	-- Save the file
-	vim.cmd("w")
+	vim.cmd("w!")
 end, { desc = "Format file with Prettier and save" })
 
 -- clear search highlights
