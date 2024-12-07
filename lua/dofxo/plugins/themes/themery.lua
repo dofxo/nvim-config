@@ -9,6 +9,7 @@ return {
 				"catppuccin-mocha",
 				"catppuccin-latte",
 				"gruvbox",
+				"PaperColor",
 			},
 		})
 	end,
