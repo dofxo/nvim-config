@@ -1,5 +1,5 @@
 return {
-	"unarvim/horizon.nvim",
+	"lunarvim/horizon.nvim",
 	config = function()
 		vim.cmd.colorscheme("horizon")
 	end,
