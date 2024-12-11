@@ -10,6 +10,7 @@ return {
 				"catppuccin-latte",
 				"gruvbox",
 				"PaperColor",
+				"horizon",
 			},
 		})
 	end,
