@@ -2,19 +2,24 @@ return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
 	dependencies = {
-		"hrsh7th/cmp-buffer",
-		"hrsh7th/cmp-path",
+		"hrsh7th/cmp-buffer", -- source for text in buffer
+		"hrsh7th/cmp-path", -- source for file system paths
 		{
 			"L3MON4D3/LuaSnip",
-			version = "v2.*",
+			version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
 			build = "make install_jsregexp",
 		},
-		"saadparwaiz1/cmp_luasnip",
-		"rafamadriz/friendly-snippets",
+		"saadparwaiz1/cmp_luasnip", -- for autocompletion
+		"rafamadriz/friendly-snippets", -- useful snippets
+		"onsails/lspkind.nvim", -- vs-code like pictograms
 	},
 	config = function()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
+		local lspkind = require("lspkind")
+
+		-- Loads VSCode-style snippets from installed plugins (e.g., friendly-snippets)
+		require("luasnip.loaders.from_vscode").lazy_load()
 
 		-- Add custom EJS snippets
 
@@ -32,27 +37,11 @@ return {
 			luasnip.parser.parse_snippet("empty-ejs", "<% ${1:code} %>"),
 		})
 
-		require("cmp").setup.filetype("txt", {
-			enabled = false,
-		})
-
 		cmp.setup({
-			enabled = function()
-				local bufnr = vim.api.nvim_get_current_buf()
-				local bufname = vim.api.nvim_buf_get_name(bufnr)
-				local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
-
-				-- Disable for unnamed buffers or 'oil' filetype
-				if bufname == "" or filetype == "oil" then
-					return false
-				end
-				return true
-			end,
-			-- Other cmp configuration here
 			completion = {
-				completeopt = "menu,menuone,noselect",
+				completeopt = "menu,menuone,preview,noselect",
 			},
-			snippet = { -- configure how nvim-cmp interacts with snippet engine
+			snippet = {
 				expand = function(args)
 					luasnip.lsp_expand(args.body)
 				end,
@@ -60,18 +49,25 @@ return {
 			mapping = cmp.mapping.preset.insert({
 				["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
 				["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+				["<C-b>"] = cmp.mapping.scroll_docs(-4),
+				["<C-f>"] = cmp.mapping.scroll_docs(4),
+				["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
 				["<C-e>"] = cmp.mapping.abort(), -- close completion window
-				["<C-a>"] = cmp.mapping.confirm({ select = false }),
+				["<CR>"] = cmp.mapping.confirm({ select = false }),
 			}),
-			-- sources for autocompletion
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" }, -- snippets
 				{ name = "buffer" }, -- text within current buffer
 				{ name = "path" }, -- file system paths
-				{ name = "codeium" }, -- file system paths
-				{ name = "tailwindcss" },
+				{ name = "codeium" },
 			}),
+			formatting = {
+				format = lspkind.cmp_format({
+					maxwidth = 50,
+					ellipsis_char = "...",
+				}),
+			},
 		})
 	end,
 }
