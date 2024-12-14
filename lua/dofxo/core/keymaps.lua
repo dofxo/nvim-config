@@ -38,5 +38,8 @@ local function toggle_background()
 	is_dark = not is_dark
 end
 
+-- set ls to restart ts_ls
+vim.keymap.set("n", "<leader>ls", ":LspStart ts_ls<CR>", { desc = "Start ts_ls LSP", silent = true })
+
 -- Add a keybinding to toggle background (e.g., <leader>cb)
 vim.keymap.set("n", "<leader>cb", toggle_background, { desc = "Toggle Background Color" })
